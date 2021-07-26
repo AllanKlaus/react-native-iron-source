@@ -1,17 +1,17 @@
 
 # @wowmaking/react-native-iron-source
 
-[Iron Source SDK](https://developers.ironsrc.com/) React Native bridge. 
+[Iron Source SDK](https://developers.ironsrc.com/) React Native bridge.
 Supports all ad units (Rewarded Video, Interstitial, Banner, Offerwall).
 
-Many thanks to all contributors of [squaretwo/react-native-iron-source](https://github.com/squaretwo/react-native-iron-source). 
+Many thanks to all contributors of [squaretwo/react-native-iron-source](https://github.com/squaretwo/react-native-iron-source).
 
 The fork includes following improvements:
 * Banner implementation
 * Bug fixes for Offerwall, Interstitial, Rewarded
 * Documentation
 * Installation using CocoaPods
-* Easier installation on android 
+* Easier installation on android
 * [Validate integration option](https://developers.ironsrc.com/ironsource-mobile/ios/integration-helper-ios/)
 * `IronSource.setConsent` method
 * Working Example App
@@ -43,16 +43,16 @@ Add `SKAdNetworkIdentifier` to your Info.plist
     </dict>
 </array>
 ```
- 
+
 #### Android
- Add a repo to your `android/app/build.gradle` file 
+ Add a repo to your `android/app/build.gradle` file
  ```
  allprojects {
      repositories {
          // Existing repos here
          // ...
-         
-         maven { url "https://dl.bintray.com/ironsource-mobile/android-sdk" }
+
+         maven { url "https://android-sdk.is.com/" }
      }
  }
  ```
@@ -65,29 +65,29 @@ Add `SKAdNetworkIdentifier` to your Info.plist
   </summary>
 
   #### Mostly automatic installation
-  
+
   `$ react-native link @wowmaking/react-native-iron-source`
-  
+
   #### Manual installation
-  
-  
+
+
   ##### iOS
-  
+
   1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
   2. Go to `node_modules` ➜ `@wowmaking/react-native-iron-source` and add `RNIronSource.xcodeproj`
   3. In XCode, in the project navigator, select your project. Add `libRNIronSource.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
   4. Run your project (`Cmd+R`)
-  
+
   ##### iOS CocoaPods
   1. Add `pod 'RNIronSource', :path => '../node_modules/@wowmaking/react-native-iron-source'` to your `ios/Podfile`
   2. Run `pod install` while in `ios` directory
-  
+
   #### Allow iOS Static Frameworks
   If you are using Static Frameworks on iOS, you need to manually enable this for the project. To enable Static Framework support, add the following global to the top of your /ios/Podfile file:
   `$RNIronSourceAsStaticFramework = true`
 
   ##### Android
-  
+
   1. Open up `android/app/src/main/java/[...]/MainApplication.java`
     - Add `import com.reactlibrary.RNIronSourcePackage;` to the imports at the top of the file
     - Add `new RNIronSourcePackage()` to the list returned by the `getPackages()` method
@@ -100,26 +100,26 @@ Add `SKAdNetworkIdentifier` to your Info.plist
     	```
       implementation project(':@wowmaking_react-native-iron-source')
     	```
-  
+
   ### Manual Setup
-  
+
   #### IronSource iOS SDK
-  
+
   ##### For projects with CocoaPods
-  
+
   Do nothing.
-  
+
   ##### For other projects
-  
+
   1. Download the iOS SDK from [Ironsrc.com](http://developers.ironsrc.com/ironsource-mobile/ios/ios-sdk/)
   2. Unzip and rename the directory to `IronSourceSDK`
   3. Copy the SDK to `~/Documents/IronSourceSDK`
   4. Drag the `IronSource.framework` to your react native target build phases from the `~/Documents/IronSourceSDK` directory
   5. Add `~/Documents/IronSourceSDK` to your target's Framework Search Paths in Build Settings
-  
-  
+
+
   #### Android
-  Add a repo to your `app/build.gradle` file 
+  Add a repo to your `app/build.gradle` file
   ```
   repositories {
       maven { url "https://dl.bintray.com/ironsource-mobile/android-sdk" }
@@ -137,7 +137,7 @@ Official doc:
 
 <details>
  <summary>Optional syntax (not recommended)</summary>
- 
+
 __Warning:__ Using this syntax means that you lock down your iOS CocoaPods dependencies to versions that we currently use in our organization. We don't recommend doing this because you might want another version at some point.
 
 ```
@@ -170,7 +170,7 @@ There is also an older example app for RN <= 0.59.x [in this branch](https://git
 
 <details>
  <summary>1. (Optional) Obtain user's consent to share user data with ad network publishers.</summary>
- 
+
  ```javascript
  import { IronSource } from '@wowmaking/react-native-iron-source';
 
@@ -178,7 +178,7 @@ There is also an older example app for RN <= 0.59.x [in this branch](https://git
 
  IronSource.setConsent(true);
  ```
-</details> 
+</details>
 
 2. Initialize IronSource SDK
 
@@ -213,7 +213,7 @@ IronSourceRewardedVideo.addEventListener('ironSourceRewardedVideoAdRewarded', re
   console.warn('Rewarded!', res)
 });
 
-// or use IronSourceRewardedVideo.addEventListener('ironSourceRewardedVideoAvailable') 
+// or use IronSourceRewardedVideo.addEventListener('ironSourceRewardedVideoAvailable')
 // to get video status
 IronSourceRewardedVideo.isRewardedVideoAvailable().then((available) => {
   if (available) {
@@ -249,14 +249,14 @@ IronSourceOfferwall.addEventListener('ironSourceOfferwallReceivedCredits', res =
 ## API (Incomplete)
 
 ### IronSource.initializeIronSource(ironSourceAppKey, userId, options)
-Initializes IronSource SDK. 
+Initializes IronSource SDK.
 
- `validateIntegration` provides an easy way to verify 
-that you’ve successfully integrated the ironSource 
+ `validateIntegration` provides an easy way to verify
+that you’ve successfully integrated the ironSource
 SDK and any additional adapters; it also makes sure all
- required dependencies and frameworks were added for 
+ required dependencies and frameworks were added for
  the various mediated ad networks. It doesn't validate Amazon adapter in current version.
- See official docs for [Android](https://developers.ironsrc.com/ironsource-mobile/android/integration-helper-android/), 
+ See official docs for [Android](https://developers.ironsrc.com/ironsource-mobile/android/integration-helper-android/),
  [iOS](https://developers.ironsrc.com/ironsource-mobile/ios/integration-helper-ios/).
   There's known issue in ios 12. See known issue section.
 #### Parameter(s)
